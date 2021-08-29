@@ -21,7 +21,7 @@
                             <h4>Form Pegawai</h4>
                         </div>
                         <div class="card-body">
-                            <form id="form"   method="POST"
+                            <form id="form_pegawai"   method="POST"
                                             action="<?php echo base_url("kepegawaian/save");?>"
                                             autocomplete="off">
                                         <input type="hidden" name="user[id]"  value="<?= isset($data->id) ? $data->id : NULL;?>">
@@ -250,7 +250,7 @@
                 var save_method;
                 $(document).ready(function () {
                    
-                    $('form#form').validate({
+                    $('form#form_pegawai').validate({
                     validClass: 'is-valid',
                     errorClass: 'is-invalid',
                     errorElement: 'div',

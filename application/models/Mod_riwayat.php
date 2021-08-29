@@ -27,8 +27,8 @@ class Mod_riwayat extends CI_Model
                $tgl_notif =  date('Y-m-d', strtotime('+4 year', strtotime($pangkat['tmt'])));
                 
                 $ref = [
-                    'tmt' 		=>  $pangkat['tmt'],
-                    'tmt_notif' => $tgl_notif,
+                    'tmt' 		=>  date('Y-m-d', strtotime($pangkat['tmt'])),
+                    'tmt_notif' => date('Y-m-d', strtotime($tgl_notif)),
                     'ket'		=>  $pangkat['ket']
                 ];
 
@@ -133,6 +133,19 @@ class Mod_riwayat extends CI_Model
 		$pegawai = (object)[];
 		$pegawai = $this->db->from('tb_user')
         ->where(['tb_user.id'=>$pk])->get()->row();
+        $pegawai->pangkat_terakhir = $this->db->from('tb_user')
+        ->join('tb_kepangkatan', 'tb_kepangkatan.id_user = tb_user.id','inner')
+        ->where(['tb_user.id'=>$pk])
+        ->order_by('Tmt_pangkat','DESC')->get()->row();
+        $pegawai->jabatan_terakhir = $this->db->from('tb_user')
+        ->join('tb_jabatan', 'tb_jabatan.id_user = tb_user.id','inner')
+        ->where(['tb_user.id'=>$pk])
+        ->order_by('tmt_jabatan','DESC')->get()->row();
+        $pegawai->pendidikan_terakhir = $this->db->from('tb_user')
+        ->join('tb_pendidikan', 'tb_pendidikan.id_user = tb_user.id','inner')
+        ->where(['tb_user.id'=>$pk])
+        ->order_by('tgl_lulus','DESC')->get()->row();
+        $pegawai->settings = $this->db->from('tb_settings')->get()->row();
 		$pegawai->rincian_pangkat = $this->db->select('pangkat as pangkat, gol_ruang as gol, Tmt_pangkat as tmt, keterangan as ket')->from('tb_kepangkatan')
 			->join('tb_user','tb_user.id=tb_kepangkatan.id_user','left')
 			->where(array('tb_kepangkatan.id_user'=>$pegawai->id))->get()->result();
@@ -190,6 +203,7 @@ class Mod_riwayat extends CI_Model
 
             if($jenis == 'pangkat'){
                 $this->db->query("DELETE FROM `tb_kepangkatan`  WHERE id_user ='". $pk ."';");
+                $this->db->query("DELETE FROM `tb_log_notif`  WHERE id_user ='". $pk ."' and status = '0';");
             }elseif($jenis == 'jabatan'){
                 $this->db->query("DELETE FROM `tb_jabatan`  WHERE id_user ='". $pk ."';");
             }elseif($jenis == 'pendidikan'){

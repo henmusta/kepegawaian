@@ -47,7 +47,7 @@
         </div>
 
         
-<div class="modal fade" id="modal_form" role="dialog">
+<div class="modal fade" id="modal_form_seeting" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -62,7 +62,7 @@
                 <form
                     action="<?php echo base_url("settings/update/");?>"
                     autocomplete="off"
-                    id="form"
+                    id="form_set"
                     class="form-horizontal"
                     enctype="multipart/form-data">
                     <input type="hidden" id="id_set" name="id_set" required="">
@@ -170,7 +170,7 @@ $(document).ready(function() {
 
                     ],
                 });
-                $('form#form').validate({
+                $('form#form_set').validate({
                     validClass: 'is-valid',
                     errorClass: 'is-invalid',
                     errorElement: 'div',
@@ -229,7 +229,7 @@ $(document).ready(function() {
                                 let timeout = 1000;
                                 if (response.status == "success") {
                                     setTimeout(function () {
-                                        $('#modal_form').modal('hide');
+                                        $('#modal_form_aplikasi').modal('hide');
                                         reload_table();
                                     }, timeout);
                                 } else {
@@ -263,7 +263,7 @@ $(document).ready(function() {
                     $('[name="id_set"]').val(data.id);
                   
                 
-                    $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+                    $('#modal_form_seeting').modal('show'); // show bootstrap modal when complete loaded
                     $('.modal-title').text('Edit Settings'); // Set title to Bootstrap modal title
 
                 },

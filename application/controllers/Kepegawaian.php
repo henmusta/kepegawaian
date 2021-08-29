@@ -7,6 +7,7 @@ class Kepegawaian extends MY_Controller {
     {
         parent::__construct();
         $this->load->model('Mod_kepegawaian');
+        $this->load->model('Mod_riwayat');
         // backButtonHandle();
     }
 
@@ -26,6 +27,16 @@ class Kepegawaian extends MY_Controller {
 		);
         $this->template->load('template','kepegawaian/form', $data);
     }
+
+    function print($pk)
+    {
+        $data = array(
+			'title' => "BIODATA",
+            'data'	=> $this->Mod_riwayat->single($pk),
+		);
+        $this->load->view('print', $data);
+    }
+
     public function ajax_list()
     {
         ini_set('memory_limit','512M');
@@ -40,7 +51,7 @@ class Kepegawaian extends MY_Controller {
             $row[] = $no;
             $row[] = $pegawai->nik;
             $row[] = $pegawai->nama;
-            if(isset($pegawai->tmt_pangkat))
+            if(isset($pegawai->tmt_notif))
 			{  
             $row[] = $pegawai->tmt_notif; 
             }else{

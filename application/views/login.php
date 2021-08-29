@@ -75,7 +75,7 @@
                 position: 'topRight'
               });
               setTimeout(function () {
-                var url = '<?php echo base_url('dist') ?>';
+                var url = '<?php echo base_url('dashboard') ?>';
                 window.location = url;
               }, 1500);
 

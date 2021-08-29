@@ -17,7 +17,11 @@ class Mod_kepegawaian extends CI_Model
 		private function _get_datatables_query()
 	{
 		
-		$this->db->select('*, tb_user.id as pk')->from('tb_user')->join('tb_log_notif','tb_user.id = tb_log_notif.id_user','left')->group_by('tb_user.id');
+		$this->db->select('*, tb_user.id as pk')
+		->from('tb_user')
+		->join('tb_log_notif','tb_user.id = tb_log_notif.id_user','left')
+		->where('tb_log_notif.status !=','1')
+		->or_where('tb_log_notif.status', NULL)->group_by('tb_user.id');
 		$i = 0;
 
 	foreach ($this->column_search as $item)
@@ -119,5 +123,7 @@ class Mod_kepegawaian extends CI_Model
         ->where(['tb_user.id'=>$pk])->get()->row();
 		return $pegawai;
 	}
+
+	
 
 }

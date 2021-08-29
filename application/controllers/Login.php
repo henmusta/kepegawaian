@@ -14,26 +14,26 @@ class Login extends CI_Controller {
     {
         $logged_in = $this->session->userdata('logged_in');
         if ($logged_in==TRUE) {
-            redirect('dist');
+            redirect('dashboard');
         }else{
             $aplikasi['aplikasi'] = $this->Mod_login->Aplikasi()->row();
             $this->load->view('login',$aplikasi);
         }
-    }//end function index
+    }
 
     function login()
     {
         
         $this->_validate();
-        //cek username database
+
         $username = anti_injection($this->input->post('username'));
 
         if($this->Mod_login->check_db($username)->num_rows()==1) {
             $db = $this->Mod_login->check_db($username)->row();
             $apl = $this->Mod_login->Aplikasi()->row();
 
-            if(md5(anti_injection($this->input->post('password')), $db->password)) {
-            //cek username dan password yg ada di database
+            if(hash_verified(anti_injection($this->input->post('password')), $db->password)) {
+
                 $userdata = array(
                     'id_user'  => $db->id,
                     'username'    => ucfirst($db->username),

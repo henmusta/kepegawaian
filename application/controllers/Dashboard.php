@@ -20,6 +20,8 @@ class Dashboard extends MY_Controller {
         $this->template->load('template','dashboard', $data);
     }
 
+    
+
 }
 /* End of file Controllername.php */
  

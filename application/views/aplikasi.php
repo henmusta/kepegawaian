@@ -47,7 +47,7 @@
         </section>
       </div>
 
-<div class="modal fade" id="modal_form" role="dialog">
+<div class="modal fade" id="modal_form_aplikasi" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -212,12 +212,7 @@
             table.ajax.reload(null,false); //reload datatable ajax 
         }
 
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-            });
+  
 
 
 
@@ -251,7 +246,7 @@
                     var image = "<?php echo base_url('assets/foto/logo/')?>";
                     $("#v_image").attr("src",image+data.logo);
                 }
-                    $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+                    $('#modal_form_aplikasi').modal('show'); // show bootstrap modal when complete loaded
                     $('.modal-title').text('Edit Aplikasi'); // Set title to Bootstrap modal title
 
                 },
@@ -282,7 +277,7 @@
 
                     if(data.status) //if success close modal and reload ajax table
                     {
-                        $('#modal_form').modal('hide');
+                        $('#modal_form_aplikasi').modal('hide');
                         reload_table();
                         Toast.fire({
                         icon: 'success',

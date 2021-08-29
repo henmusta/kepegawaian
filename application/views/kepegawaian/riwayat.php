@@ -17,10 +17,10 @@
                 <div class="col-12">
                     <div class="card author-box card-primary">
                         <div class="text-right" style="padding:15px;">
-                            <a id="kembali" name="kembali" href="<?php echo base_url();?>kepegawaian/form/<?= isset($data->id) ? $data->id : NULL;?>" class="btn btn-secondary">EDIT</a>
-                            <button type="submit" class="btn btn-outline-primary">
-                                <i class="fa fa-print"></i>
-                                Print</button>
+                            <a id="kembali" name="kembali" href="<?php echo base_url();?>kepegawaian/form/<?= isset($data->id) ? $data->id : NULL;?>" class="btn btn-primary">EDIT</a>
+                            <a id="print" name="print" href="<?php echo base_url("kepegawaian/print/");?><?= isset($data->id) ? $data->id : NULL;?>" class="btn btn-info" target="_blank"> <i class="fa fa-print"></i> Print</a>
+
+                                
                         </div><hr>
                         <div class="card-body">
                             <div class="author-box-left border" style="padding:15px;">
@@ -34,7 +34,7 @@
                                     <?php else : ?>
                                         <img
                                     alt="image"
-                                    src="http://localhost/biodata/assets/img/avatar/avatar-1.png"
+                                    src="<?php echo base_url();?>assets/img/avatar/avatar-1.png"
                                     class="rounded-circle author-box-picture"
                                     width="200"
                                     height="150">
@@ -45,7 +45,7 @@
                                 <h5><?= isset($data->nama) ? $data->nama : NULL;?></h5>
                                 <p><?= isset($data->nik) ? $data->nik : NULL;?></p>
                             </div>
-                            <div class="author-box-details">
+                            <div class="author-box-details text-left">
                                 <div class="author-box-description" style="margin-top:0px">
 
                                     <div class="row">
@@ -55,6 +55,7 @@
                                                     <u>INFORMASI UMUM</u>
                                                 </p>
                                             </div>
+                                          
                                             <table>
                                                 <thead>
                                                     <tr>
@@ -115,22 +116,22 @@
                                                             <tr>
                                                                 <th>Pangkat Terakhir</th>
                                                                 <td width="0%">:</td>
-                                                                <td><?= isset($data->no_hp) ? $data->no_hp : NULL;?></td>
+                                                                <td><?= isset($data->pangkat_terakhir->pangkat) ? $data->pangkat_terakhir->pangkat : NULL;?></td>
                                                             </tr>
                                                             <tr>
                                                                 <th>TMT Pangkat Terakhir</th>
                                                                 <td width="0%">:</td>
-                                                                <td><?= isset($data->ttl) ? $data->ttl : NULL;?></td>
+                                                                <td><?= isset($data->pangkat_terakhir->Tmt_pangkat) ? $data->pangkat_terakhir->Tmt_pangkat : NULL;?></td>
                                                             </tr>
                                                             <tr>
                                                                 <th style="vertical-align: top;text-align: left;">Jabatan Sekarang</th>
                                                                 <td width="0%" style="vertical-align: top;text-align: left;">:</td>
-                                                                <td><?= isset($data->status) ? $data->status : NULL;?></td>
+                                                                <td><?= isset($data->jabatan_terakhir->jabatan) ? $data->jabatan_terakhir->jabatan : NULL;?></td>
                                                             </tr>
                                                             <tr>
                                                                 <th style="vertical-align: top;text-align: left;">TMT Jabatan Sekarang</th>
                                                                 <td width="0%" style="vertical-align: top;text-align: left;">:</td>
-                                                                <td><?= isset($data->jenis_kelamin) ? $data->jenis_kelamin : NULL;?></td>
+                                                                <td><?= isset($data->jabatan_terakhir->tmt_jabatan) ? $data->jabatan_terakhir->tmt_jabatan : NULL;?></td>
                                                             </tr>
                                                         </thead>
                                                     </table>
@@ -267,10 +268,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -279,7 +280,7 @@
                                                 </tfoot>
                                             </table>
                                             <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-secondary">Selesai</a>
+                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
                                                 <button type="submit" class="btn btn-outline-primary">
                                                     <i class="fa fa-save"></i>
                                                     Simpan</button>
@@ -314,10 +315,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -326,7 +327,7 @@
                                                 </tfoot>
                                             </table>
                                             <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-secondary">Selesai</a>
+                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
                                                 <button type="submit" class="btn btn-outline-primary">
                                                     <i class="fa fa-save"></i>
                                                     Simpan</button>
@@ -360,10 +361,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -372,7 +373,7 @@
                                                 </tfoot>
                                             </table>
                                             <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-secondary">Selesai</a>
+                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
                                                 <button type="submit" class="btn btn-outline-primary">
                                                     <i class="fa fa-save"></i>
                                                     Simpan</button>
@@ -406,10 +407,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -418,7 +419,7 @@
                                                 </tfoot>
                                             </table>
                                             <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-secondary">Selesai</a>
+                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
                                                 <button type="submit" class="btn btn-outline-primary">
                                                     <i class="fa fa-save"></i>
                                                     Simpan</button>
@@ -453,10 +454,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -465,7 +466,7 @@
                                                 </tfoot>
                                             </table>
                                             <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-secondary">Selesai</a>
+                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
                                                 <button type="submit" class="btn btn-outline-primary">
                                                     <i class="fa fa-save"></i>
                                                     Simpan</button>
@@ -499,10 +500,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -511,7 +512,7 @@
                                                 </tfoot>
                                             </table>
                                             <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-secondary">Selesai</a>
+                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
                                                 <button type="submit" class="btn btn-outline-primary">
                                                     <i class="fa fa-save"></i>
                                                     Simpan</button>
@@ -544,10 +545,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -556,7 +557,7 @@
                                                 </tfoot>
                                             </table>
                                             <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-secondary">Selesai</a>
+                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
                                                 <button type="submit" class="btn btn-outline-primary">
                                                     <i class="fa fa-save"></i>
                                                     Simpan</button>
@@ -589,10 +590,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -601,7 +602,7 @@
                                                 </tfoot>
                                             </table>
                                             <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-secondary">Selesai</a>
+                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
                                                 <button type="submit" class="btn btn-outline-primary">
                                                     <i class="fa fa-save"></i>
                                                     Simpan</button>
@@ -635,10 +636,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -647,7 +648,7 @@
                                                 </tfoot>
                                             </table>
                                             <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-secondary">Selesai</a>
+                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
                                                 <button type="submit" class="btn btn-outline-primary">
                                                     <i class="fa fa-save"></i>
                                                     Simpan</button>
@@ -680,10 +681,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -705,10 +706,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -731,10 +732,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -757,10 +758,10 @@
                                                     <tr>
                                                         <th>
                                                             <div class="btn-group" id="additem">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-delete-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete-row">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-row">
+                                                                <button type="button" class="btn btn-sm btn-outline-success btn-add-row">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
@@ -769,7 +770,7 @@
                                                 </tfoot>
                                             </table>
                                             <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-secondary">Selesai</a>
+                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
                                                 <button type="submit" class="btn btn-outline-primary">
                                                     <i class="fa fa-save"></i>
                                                     Simpan</button>
@@ -797,6 +798,7 @@
     $(function () {
         'use strict'
         $(document).ready(function () {
+        
             const tablepangkat = $('#table-kepangkatan').DataTable({
                 paging: false, searching: false, ordering: false, info: false, data: <?= isset($data->rincian_pangkat) ? json_encode($data->rincian_pangkat) : '[]' ;?>, columns : [ {
                     data: 'pangkat',
@@ -828,11 +830,10 @@
                     width: '150px',
                     render: function (columnData, type, rowData, meta) {
                         return String(
-                            `
-                                <input id="kpn_tmt` + meta.row +
+                            `<input id="kpn_tmt` + meta.row +
                             `" class="form-control datepicker" value="` + columnData +
                             `" name="kepangkatan[` + meta.row +
-                            `][tmt]" data-column="tmt">
+                            `][tmt]">
                             `
                         ).trim();
                     }
@@ -887,14 +888,11 @@
                                 .draw();
                         });
                 }, createdRow : function( row, data, index ){
-                    $(row)
-                        .find('.datepicker')
-                        .datepicker({
-                            // locale: {
-                            //     format: 'DD-MM-YYYY'
-                            // },
-                            // singleDatePicker: true,
-                            // showDropdowns: true
+              
+
+                        $(row)
+                        .find('.datepicker').flatpickr({
+                            altInput: true,altFormat: 'd-m-Y'
                         });
 
                     $(row)
@@ -966,14 +964,10 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                            .find('.datepicker')
-                            .daterangepicker({
-                                locale: {
-                                    format: 'YYYY-MM-DD'
-                                },
-                                singleDatePicker: true,
-                                showDropdowns: true
-                            });
+                        .find('.datepicker').flatpickr({
+                            altInput: true,altFormat: 'd-m-Y'
+                        });
+
 
                         $(row)
                             .find('.select2-ket')
@@ -1052,14 +1046,10 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                            .find('.datepicker')
-                            .daterangepicker({
-                                locale: {
-                                    format: 'YYYY-MM-DD'
-                                },
-                                singleDatePicker: true,
-                                showDropdowns: true
-                            });
+                        .find('.datepicker').flatpickr({
+                            altInput: true,altFormat: 'd-m-Y'
+                        });
+
 
                         $(row)
                             .find('.select2-ket')
@@ -1702,14 +1692,10 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                            .find('.datepicker')
-                            .daterangepicker({
-                                locale: {
-                                    format: 'YYYY-MM-DD'
-                                },
-                                singleDatePicker: true,
-                                showDropdowns: true
-                            });
+                        .find('.datepicker').flatpickr({
+                            altInput: true,altFormat: 'd-m-Y'
+                        });
+
 
                         $(row)
                             .find('.select2-ket')
@@ -1863,14 +1849,10 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                            .find('.datepicker')
-                            .daterangepicker({
-                                locale: {
-                                    format: 'YYYY-MM-DD'
-                                },
-                                singleDatePicker: true,
-                                showDropdowns: true
-                            });
+                        .find('.datepicker').flatpickr({
+                            altInput: true,altFormat: 'd-m-Y'
+                        });
+
 
                         $(row)
                             .find('.select2-ket')
@@ -1937,14 +1919,10 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                            .find('.datepicker')
-                            .daterangepicker({
-                                locale: {
-                                    format: 'YYYY-MM-DD'
-                                },
-                                singleDatePicker: true,
-                                showDropdowns: true
-                            });
+                        .find('.datepicker').flatpickr({
+                            altInput: true,altFormat: 'd-m-Y'
+                        });
+
 
                         $(row)
                             .find('.select2-ket')
@@ -2023,14 +2001,9 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                            .find('.datepicker')
-                            .daterangepicker({
-                                locale: {
-                                    format: 'YYYY-MM-DD'
-                                },
-                                singleDatePicker: true,
-                                showDropdowns: true
-                            });
+                        .find('.datepicker').flatpickr({
+                            altInput: true,altFormat: 'd-m-Y'
+                        });
 
                         $(row)
                             .find('.select2-ket')
@@ -2122,14 +2095,10 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                            .find('.datepicker')
-                            .daterangepicker({
-                                locale: {
-                                    format: 'YYYY-MM-DD'
-                                },
-                                singleDatePicker: true,
-                                showDropdowns: true
-                            });
+                        .find('.datepicker').flatpickr({
+                            altInput: true,altFormat: 'd-m-Y'
+                        });
+
 
                         $(row)
                             .find('.select2-ket')

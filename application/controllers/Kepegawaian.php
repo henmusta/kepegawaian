@@ -84,9 +84,11 @@ class Kepegawaian extends MY_Controller {
     {
         $params 	= $this->input->post(NULL, TRUE);
         extract($params);
+         
         $cek = $this->Mod_kepegawaian->cek_nip($user['nik']);
-        if($cek->num_rows() > 0){
-            echo json_encode(array("error" => "NIK Sudah Ada!!"));
+        if($cek->num_rows() > 0 && $user['id'] == ""){
+            echo json_encode(array(	'status'	=> 'error',
+			'message'	=> 'NIP Sudah Ada!'));
         }else{
             $nama = slug($user['nik']);
             $config['upload_path']   = './assets/foto/pegawai/';

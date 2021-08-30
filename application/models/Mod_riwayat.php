@@ -80,34 +80,35 @@ class Mod_riwayat extends CI_Model
                     ");
                 }
             }elseif($jenis == 'keluarga'){
+                if(isset($ibu)){
                 foreach( $ibu AS $index => $val ){		
                     $this->db->query("
                         INSERT INTO `tb_keluarga` (`id_user`,`nama`,`tgl_lahir`, pekerjaan, status) 
                             VALUES ('".$id_user."','".$val['nama']."','".$val['tgl']."','".$val['pekerjaan']."','Ibu');
                     ");
                     
-                }
-
+                }}
+                if(isset($ayah)){
                 foreach( $ayah AS $index => $val ){		
                     $this->db->query("
                         INSERT INTO `tb_keluarga` (`id_user`,`nama`,`tgl_lahir`, pekerjaan, status) 
                             VALUES ('".$id_user."','".$val['nama']."','".$val['tgl']."','".$val['pekerjaan']."', 'Ayah');
                     ");    
-                }
+                }}
+                if(isset($pasutri)){
                 foreach( $pasutri AS $index => $val ){		
                     $this->db->query("
                         INSERT INTO `tb_keluarga` (`id_user`,`nama`,`tgl_lahir`, tgl_pernikahan, pekerjaan, status) 
                             VALUES ('".$id_user."','".$val['nama']."','".$val['tgl_lahir']."','".$val['tgl_pernikahan']."','".$val['pekerjaan']."', 'Pasutri');
                     ");    
-                }
+                }}
+                if(isset($anak)){
                 foreach( $anak AS $index => $val ){		
                     $this->db->query("
                         INSERT INTO `tb_keluarga` (`id_user`,`nama`,`tgl_lahir`, jenis_kelamin, pekerjaan, status) 
                             VALUES ('".$id_user."','".$val['nama']."','".$val['tgl']."','".$val['gender']."','".$val['pekerjaan']."', 'Anak');
                     ");    
-                }
-
-
+                }}
             }
 
 
@@ -173,16 +174,16 @@ class Mod_riwayat extends CI_Model
         $pegawai->rincian_prestasi = $this->db->select('*')->from('tb_prestasi')
 			->join('tb_user','tb_user.id=tb_prestasi.id_user','left')
 			->where(array('tb_prestasi.id_user'=>$pegawai->id))->get()->result();
-        $pegawai->rincian_keluarga_ibu = $this->db->select('*')->from('tb_keluarga')
+        $pegawai->rincian_keluarga_ibu = $this->db->select('tb_keluarga.*')->from('tb_keluarga')
 			->join('tb_user','tb_user.id=tb_keluarga.id_user','left')
 			->where(array('tb_keluarga.id_user'=>$pegawai->id, 'tb_keluarga.status' => 'Ibu'))->get()->result();
-        $pegawai->rincian_keluarga_ayah = $this->db->select('*')->from('tb_keluarga')
+        $pegawai->rincian_keluarga_ayah = $this->db->select('tb_keluarga.*')->from('tb_keluarga')
 			->join('tb_user','tb_user.id=tb_keluarga.id_user','left')
 			->where(array('tb_keluarga.id_user'=>$pegawai->id, 'tb_keluarga.status' => 'Ayah'))->get()->result();
-        $pegawai->rincian_keluarga_pasutri = $this->db->select('*')->from('tb_keluarga')
+        $pegawai->rincian_keluarga_pasutri = $this->db->select('tb_keluarga.*')->from('tb_keluarga')
 			->join('tb_user','tb_user.id=tb_keluarga.id_user','left')
 			->where(array('tb_keluarga.id_user'=>$pegawai->id, 'tb_keluarga.status' => 'Pasutri'))->get()->result();
-        $pegawai->rincian_keluarga_anak = $this->db->select('*')->from('tb_keluarga')
+        $pegawai->rincian_keluarga_anak = $this->db->select('tb_keluarga.*')->from('tb_keluarga')
 			->join('tb_user','tb_user.id=tb_keluarga.id_user','left')
 			->where(array('tb_keluarga.id_user'=>$pegawai->id, 'tb_keluarga.status' => 'Anak'))->get()->result();
 		return $pegawai;

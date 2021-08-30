@@ -7,22 +7,13 @@ class Notification extends CI_Controller {
         $this->load->model('User_model');
         $this->load->model('Notification_model');
     }
-
     public function index() {
         $last_notification_id = $this->User_model->get_last_notif()->last;
         $data = $this->Notification_model->getByUserID(
-            // $this->input->get('user_id'), # di dapat dari HTTP GET
             $last_notification_id
         );
         echo json_encode($data);
     } 
-
-    // public function create() {
-    //     if ("POST" === $this->input->server('REQUEST_METHOD')) {
-    //         $this->Notification_model->create();
-    //     }
-    // }
-
     public function save(){
         $params 	= $this->input->post(NULL, TRUE);
         $response 	= $this->Notification_model->save($params);

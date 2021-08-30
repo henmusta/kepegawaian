@@ -201,13 +201,9 @@
             </div>
 
             <script>
-                $('.datepicker').daterangepicker({
-                    locale: {
-                        format: 'YYYY-MM-DD'
-                    },
-                    drops: 'down',
-                    opens: 'right'
-                });
+               $('.datepicker').flatpickr({
+                            altInput: true,altFormat: 'd-m-Y'
+                        });
 
                 function goBack() {
                     window

@@ -83,7 +83,7 @@
             "targets": [ -1 ], //last column
             "render": function ( data, type, row ) {
 
-                return "<div class=\"dropdown\"><button class=\"btn btn-primary dropdown-toggle\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Aksi</button><div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\"><a class=\"dropdown-item\"  href='<?php echo base_url("riwayat/update/");?>"+row[5]+"' type=\"button\"><i class=\"far fa-eye\"></i> Preview</a><a href='<?php echo base_url("kepegawaian/print/");?>"+row[5]+"' class=\"dropdown-item\" type=\"button\" target=\"_blank\"><i class=\"fas fa-print\"></i> Cetak</a></div></div>"
+                return "<div class=\"dropdown\"><button class=\"btn btn-info dropdown-toggle\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Aksi</button><div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\"><a class=\"dropdown-item\"  href='<?php echo base_url("riwayat/update/");?>"+row[5]+"' type=\"button\"><i class=\"far fa-eye\"></i> Detail</a><a href='<?php echo base_url("kepegawaian/print/");?>"+row[5]+"' class=\"dropdown-item\" type=\"button\" target=\"_blank\"><i class=\"fas fa-print\"></i> Cetak</a></div></div>"
 
            },
 

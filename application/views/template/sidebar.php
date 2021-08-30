@@ -30,7 +30,7 @@ $apl = $this->db->get("tb_aplikasi")->row();
             </li>
 
             <li class="<?php echo  $this->uri->segment(1) == 'notifikasi' || $this->uri->segment(1) == 'notifikasi' ? 'active' : '' ; ?>">
-              <a  href="<?php echo base_url(); ?>notifikasi" class="nav-link"><i class="far fa-bell"></i><span>Notifikasi</span></a>
+              <a  href="<?php echo base_url(); ?>notif_all" class="nav-link"><i class="far fa-bell"></i><span>Notifikasi</span></a>
             </li>
         
      

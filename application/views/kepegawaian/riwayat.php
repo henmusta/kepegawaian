@@ -1,15 +1,14 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Tab</h1>
+            <h1>Riwayat</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active">
                     <a href="#">Dashboard</a>
                 </div>
                 <div class="breadcrumb-item">
-                    <a href="#">Components</a>
+                    <a href="#">Riwayat</a>
                 </div>
-                <div class="breadcrumb-item">Tab</div>
             </div>
         </div>
         <div class="section-body">
@@ -17,30 +16,40 @@
                 <div class="col-12">
                     <div class="card author-box card-primary">
                         <div class="text-right" style="padding:15px;">
-                            <a id="kembali" name="kembali" href="<?php echo base_url();?>kepegawaian/form/<?= isset($data->id) ? $data->id : NULL;?>" class="btn btn-primary">EDIT</a>
-                            <a id="print" name="print" href="<?php echo base_url("kepegawaian/print/");?><?= isset($data->id) ? $data->id : NULL;?>" class="btn btn-info" target="_blank"> <i class="fa fa-print"></i> Print</a>
+                            <a
+                                id="kembali"
+                                name="kembali"
+                                href="<?php echo base_url();?>kepegawaian/form/<?= isset($data->id) ? $data->id : NULL;?>"
+                                class="btn btn-primary">EDIT</a>
+                            <a
+                                id="print"
+                                name="print"
+                                href="<?php echo base_url("kepegawaian/print/");?><?= isset($data->id) ? $data->id : NULL;?>"
+                                class="btn btn-info"
+                                target="_blank">
+                                <i class="fa fa-print"></i>
+                                Print</a>
 
-                                
                         </div><hr>
                         <div class="card-body">
                             <div class="author-box-left border" style="padding:15px;">
 
-                            <?php if(isset($data->image)) : ?>
+                                <?php if(isset($data->image)) : ?>
                                 <img
                                     alt="image"
                                     src="<?php echo base_url("assets/foto/pegawai/");?><?php echo $data->image?>"
                                     width="150"
                                     height="200">
-                                    <?php else : ?>
-                                        <img
+                            <?php else : ?>
+                                <img
                                     alt="image"
                                     src="<?php echo base_url();?>assets/img/avatar/avatar-1.png"
                                     class="rounded-circle author-box-picture"
                                     width="200"
                                     height="150">
-                          
-                            <?php endif; ?>
-                              
+
+                                <?php endif; ?>
+
                                 <div class="clearfix"></div><br>
                                 <h5><?= isset($data->nama) ? $data->nama : NULL;?></h5>
                                 <p><?= isset($data->nik) ? $data->nik : NULL;?></p>
@@ -55,7 +64,7 @@
                                                     <u>INFORMASI UMUM</u>
                                                 </p>
                                             </div>
-                                          
+
                                             <table>
                                                 <thead>
                                                     <tr>
@@ -66,7 +75,7 @@
                                                     <tr>
                                                         <th>Tanggal Lahir</th>
                                                         <td width="0%">:</td>
-                                                        <td><?= isset($data->ttl) ? $data->ttl : NULL;?></td>
+                                                        <td><?= date("d-m-Y", strtotime(isset($data->ttl) ? $data->ttl : NULL));?></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Pernikahan</th>
@@ -97,7 +106,9 @@
                                                     <tr>
                                                         <th width="40%" style="vertical-align: top;text-align: left;">Pendidikan Terakhir</th>
                                                         <td width="0%" style="vertical-align: top;text-align: left;">:</td>
-                                                        <td>S1 Teknik Informatika</td>
+                                                        <td><?= isset($data->pendidikan_terakhir->tingkat_pendidikan) ? $data->pendidikan_terakhir->tingkat_pendidikan : NULL;?>
+                                                            -
+                                                            <?= isset($data->pendidikan_terakhir->jurusan) ? $data->pendidikan_terakhir->jurusan : NULL;?></td>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -121,7 +132,9 @@
                                                             <tr>
                                                                 <th>TMT Pangkat Terakhir</th>
                                                                 <td width="0%">:</td>
-                                                                <td><?= isset($data->pangkat_terakhir->Tmt_pangkat) ? $data->pangkat_terakhir->Tmt_pangkat : NULL;?></td>
+
+                                                                <td>
+                                                                    <?= date("d-m-Y", strtotime(isset($data->pangkat_terakhir->Tmt_pangkat) ? $data->pangkat_terakhir->Tmt_pangkat : NULL));?></td>
                                                             </tr>
                                                             <tr>
                                                                 <th style="vertical-align: top;text-align: left;">Jabatan Sekarang</th>
@@ -131,7 +144,8 @@
                                                             <tr>
                                                                 <th style="vertical-align: top;text-align: left;">TMT Jabatan Sekarang</th>
                                                                 <td width="0%" style="vertical-align: top;text-align: left;">:</td>
-                                                                <td><?= isset($data->jabatan_terakhir->tmt_jabatan) ? $data->jabatan_terakhir->tmt_jabatan : NULL;?></td>
+                                                                <td>
+                                                                    <?= date("d-m-Y", strtotime(isset($data->jabatan_terakhir->tmt_jabatan) ? $data->jabatan_terakhir->tmt_jabatan : NULL));?></td>
                                                             </tr>
                                                         </thead>
                                                     </table>
@@ -276,14 +290,22 @@
                                                                 </button>
                                                             </div>
                                                         </th>
+                                                        <th colspan="3" class="text-right">
+                                                            <div class="btn-group" id="additem">
+                                                                <button type="submit" class="btn btn-outline-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                    Simpan</button>
+                                                            </div>
+                                                        </th>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
-                                            <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    <i class="fa fa-save"></i>
-                                                    Simpan</button>
+                                            </table><br><hr>
+                                            <div class="text-right" style="padding-right:5px">
+                                                <a
+                                                    id="kembali"
+                                                    name="kembali"
+                                                    onclick="goBack()"
+                                                    class="btn btn-outline-success">Selesai</a>
                                             </div>
                                         </form>
                                     </div>
@@ -322,15 +344,22 @@
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
+                                                        </th> <th colspan="2" class="text-right">
+                                                            <div class="btn-group" id="additem">
+                                                                <button type="submit" class="btn btn-outline-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                    Simpan</button>
+                                                            </div>
                                                         </th>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
-                                            <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    <i class="fa fa-save"></i>
-                                                    Simpan</button>
+                                            </table><br><hr>
+                                            <div class="text-right" style="padding-right:5px">
+                                                <a
+                                                    id="kembali"
+                                                    name="kembali"
+                                                    onclick="goBack()"
+                                                    class="btn btn-outline-success">Selesai</a>
                                             </div>
                                         </form>
                                     </div>
@@ -368,15 +397,22 @@
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
+                                                        </th> <th colspan="3" class="text-right">
+                                                            <div class="btn-group" id="additem">
+                                                                <button type="submit" class="btn btn-outline-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                    Simpan</button>
+                                                            </div>
                                                         </th>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
-                                            <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    <i class="fa fa-save"></i>
-                                                    Simpan</button>
+                                            </table><br><hr>
+                                            <div class="text-right" style="padding-right:5px">
+                                                <a
+                                                    id="kembali"
+                                                    name="kembali"
+                                                    onclick="goBack()"
+                                                    class="btn btn-outline-success">Selesai</a>
                                             </div>
                                         </form>
                                     </div>
@@ -414,15 +450,22 @@
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
+                                                        </th> <th colspan="3" class="text-right">
+                                                            <div class="btn-group" id="additem">
+                                                                <button type="submit" class="btn btn-outline-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                    Simpan</button>
+                                                            </div>
                                                         </th>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
-                                            <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    <i class="fa fa-save"></i>
-                                                    Simpan</button>
+                                            </table><br><hr>
+                                            <div class="text-right" style="padding-right:5px">
+                                                <a
+                                                    id="kembali"
+                                                    name="kembali"
+                                                    onclick="goBack()"
+                                                    class="btn btn-outline-success">Selesai</a>
                                             </div>
                                         </form>
                                     </div>
@@ -461,15 +504,22 @@
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
+                                                        </th> <th colspan="3" class="text-right">
+                                                            <div class="btn-group" id="additem">
+                                                                <button type="submit" class="btn btn-outline-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                    Simpan</button>
+                                                            </div>
                                                         </th>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
-                                            <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    <i class="fa fa-save"></i>
-                                                    Simpan</button>
+                                            </table><br><hr>
+                                            <div class="text-right" style="padding-right:5px">
+                                                <a
+                                                    id="kembali"
+                                                    name="kembali"
+                                                    onclick="goBack()"
+                                                    class="btn btn-outline-success">Selesai</a>
                                             </div>
                                         </form>
                                     </div>
@@ -507,15 +557,22 @@
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
+                                                        </th> <th colspan="3" class="text-right">
+                                                            <div class="btn-group" id="additem">
+                                                                <button type="submit" class="btn btn-outline-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                    Simpan</button>
+                                                            </div>
                                                         </th>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
-                                            <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    <i class="fa fa-save"></i>
-                                                    Simpan</button>
+                                            </table><br><hr>
+                                            <div class="text-right" style="padding-right:5px">
+                                                <a
+                                                    id="kembali"
+                                                    name="kembali"
+                                                    onclick="goBack()"
+                                                    class="btn btn-outline-success">Selesai</a>
                                             </div>
                                         </form>
                                     </div>
@@ -552,15 +609,22 @@
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
+                                                        </th> <th colspan="2" class="text-right">
+                                                            <div class="btn-group" id="additem">
+                                                                <button type="submit" class="btn btn-outline-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                    Simpan</button>
+                                                            </div>
                                                         </th>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
-                                            <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    <i class="fa fa-save"></i>
-                                                    Simpan</button>
+                                            </table><br><hr>
+                                            <div class="text-right" style="padding-right:5px">
+                                                <a
+                                                    id="kembali"
+                                                    name="kembali"
+                                                    onclick="goBack()"
+                                                    class="btn btn-outline-success">Selesai</a>
                                             </div>
                                         </form>
                                     </div>
@@ -597,15 +661,22 @@
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
+                                                        </th> <th colspan="2" class="text-right">
+                                                            <div class="btn-group" id="additem">
+                                                                <button type="submit" class="btn btn-outline-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                    Simpan</button>
+                                                            </div>
                                                         </th>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
-                                            <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    <i class="fa fa-save"></i>
-                                                    Simpan</button>
+                                            </table><br><hr>
+                                            <div class="text-right" style="padding-right:5px">
+                                                <a
+                                                    id="kembali"
+                                                    name="kembali"
+                                                    onclick="goBack()"
+                                                    class="btn btn-outline-success">Selesai</a>
                                             </div>
                                         </form>
                                     </div>
@@ -643,15 +714,22 @@
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
+                                                        </th> <th colspan="3" class="text-right">
+                                                            <div class="btn-group" id="additem">
+                                                                <button type="submit" class="btn btn-outline-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                    Simpan</button>
+                                                            </div>
                                                         </th>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
-                                            <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    <i class="fa fa-save"></i>
-                                                    Simpan</button>
+                                            </table><br><hr>
+                                            <div class="text-right" style="padding-right:5px">
+                                                <a
+                                                    id="kembali"
+                                                    name="kembali"
+                                                    onclick="goBack()"
+                                                    class="btn btn-outline-success">Selesai</a>
                                             </div>
                                         </form>
                                     </div>
@@ -671,7 +749,7 @@
                                                 <thead>
                                                     <tr>
                                                         <!-- <th>No</th> -->
-                                                        <th>Nama</th>
+                                                        <th>Nama Ibu</th>
                                                         <th>Tanggal Lahir</th>
                                                         <th>Pekerjaan</th>
                                                     </tr>
@@ -696,7 +774,7 @@
                                                 <thead>
                                                     <tr>
                                                         <!-- <th>No</th> -->
-                                                        <th>Nama</th>
+                                                        <th>Nama Ayah</th>
                                                         <th>Tanggal Lahir</th>
                                                         <th>Pekerjaan</th>
                                                     </tr>
@@ -765,15 +843,22 @@
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
+                                                        </th> <th colspan="3" class="text-right">
+                                                            <div class="btn-group" id="additem">
+                                                                <button type="submit" class="btn btn-outline-primary">
+                                                                    <i class="fa fa-save"></i>
+                                                                    Simpan</button>
+                                                            </div>
                                                         </th>
                                                     </tr>
                                                 </tfoot>
-                                            </table>
-                                            <div class="text-right">
-                                                <a id="kembali" name="kembali" onclick="goBack()" class="btn btn-success">Selesai</a>
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    <i class="fa fa-save"></i>
-                                                    Simpan</button>
+                                            </table><br><hr>
+                                            <div class="text-right" style="padding-right:5px">
+                                                <a
+                                                    id="kembali"
+                                                    name="kembali"
+                                                    onclick="goBack()"
+                                                    class="btn btn-outline-success">Selesai</a>
                                             </div>
                                         </form>
                                     </div>
@@ -798,7 +883,7 @@
     $(function () {
         'use strict'
         $(document).ready(function () {
-        
+
             const tablepangkat = $('#table-kepangkatan').DataTable({
                 paging: false, searching: false, ordering: false, info: false, data: <?= isset($data->rincian_pangkat) ? json_encode($data->rincian_pangkat) : '[]' ;?>, columns : [ {
                     data: 'pangkat',
@@ -830,9 +915,8 @@
                     width: '150px',
                     render: function (columnData, type, rowData, meta) {
                         return String(
-                            `<input id="kpn_tmt` + meta.row +
-                            `" class="form-control datepicker" value="` + columnData +
-                            `" name="kepangkatan[` + meta.row +
+                            `<input id="kpn_tmt` + meta.row + `" class="form-control datepicker" value="` +
+                            columnData + `" name="kepangkatan[` + meta.row +
                             `][tmt]">
                             `
                         ).trim();
@@ -888,12 +972,10 @@
                                 .draw();
                         });
                 }, createdRow : function( row, data, index ){
-              
 
-                        $(row)
-                        .find('.datepicker').flatpickr({
-                            altInput: true,altFormat: 'd-m-Y'
-                        });
+                    $(row)
+                        .find('.datepicker')
+                        .flatpickr({altInput: true, altFormat: 'd-m-Y'});
 
                     $(row)
                         .find('.select2-ket')
@@ -964,10 +1046,8 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                        .find('.datepicker').flatpickr({
-                            altInput: true,altFormat: 'd-m-Y'
-                        });
-
+                            .find('.datepicker')
+                            .flatpickr({altInput: true, altFormat: 'd-m-Y'});
 
                         $(row)
                             .find('.select2-ket')
@@ -1046,10 +1126,8 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                        .find('.datepicker').flatpickr({
-                            altInput: true,altFormat: 'd-m-Y'
-                        });
-
+                            .find('.datepicker')
+                            .flatpickr({altInput: true, altFormat: 'd-m-Y'});
 
                         $(row)
                             .find('.select2-ket')
@@ -1692,10 +1770,8 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                        .find('.datepicker').flatpickr({
-                            altInput: true,altFormat: 'd-m-Y'
-                        });
-
+                            .find('.datepicker')
+                            .flatpickr({altInput: true, altFormat: 'd-m-Y'});
 
                         $(row)
                             .find('.select2-ket')
@@ -1849,10 +1925,8 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                        .find('.datepicker').flatpickr({
-                            altInput: true,altFormat: 'd-m-Y'
-                        });
-
+                            .find('.datepicker')
+                            .flatpickr({altInput: true, altFormat: 'd-m-Y'});
 
                         $(row)
                             .find('.select2-ket')
@@ -1919,10 +1993,8 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                        .find('.datepicker').flatpickr({
-                            altInput: true,altFormat: 'd-m-Y'
-                        });
-
+                            .find('.datepicker')
+                            .flatpickr({altInput: true, altFormat: 'd-m-Y'});
 
                         $(row)
                             .find('.select2-ket')
@@ -2001,9 +2073,8 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                        .find('.datepicker').flatpickr({
-                            altInput: true,altFormat: 'd-m-Y'
-                        });
+                            .find('.datepicker')
+                            .flatpickr({altInput: true, altFormat: 'd-m-Y'});
 
                         $(row)
                             .find('.select2-ket')
@@ -2095,10 +2166,8 @@
                             });
                     }, createdRow : function( row, data, index ){
                         $(row)
-                        .find('.datepicker').flatpickr({
-                            altInput: true,altFormat: 'd-m-Y'
-                        });
-
+                            .find('.datepicker')
+                            .flatpickr({altInput: true, altFormat: 'd-m-Y'});
 
                         $(row)
                             .find('.select2-ket')
@@ -2170,9 +2239,7 @@
                             }
                         });
                     }
-                }); 
-                
-                $('form#form_jabatan').validate({
+                }); $('form#form_jabatan').validate({
                     validClass: 'is-valid',
                     errorClass: 'is-invalid',
                     errorElement: 'div',

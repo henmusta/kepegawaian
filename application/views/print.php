@@ -437,6 +437,7 @@
                 <thead>
                 <tr>
                         <th>No</th>
+                        <th>Tahun</th>
                         <th>Nama Diklat</th>
                         <th>Tempat Diklat</th>
                         <th>Penyelenggara</th>
@@ -511,6 +512,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Diklat</th>
+                        <th>Tahun</th>
                         <th>Tempat Diklat</th>
                         <th>Penyelenggara</th>
                        
@@ -554,7 +556,14 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                <?php $no = 0; foreach($data->rincian_penghargaan AS $row) : $no++; ?>
+                            <tr>
+                                <td class="text-right"><?= $no;?></td>
+                                <td><?= $row->nama_jasa;?></td>
+                                <td><?= $row->asal_perolehan;?></td>
+                                <td><?= $row->tahun;?></td>  
+                            </tr>
+                            <?php endforeach;?>
                 </tbody>
             </table>
             <br>
@@ -580,7 +589,14 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                <?php $no = 0; foreach($data->rincian_hukuman AS $row) : $no++; ?>
+                            <tr>
+                                <td class="text-right"><?= $no;?></td>
+                                <td><?= $row->jenis_huk;?></td>
+                                <td><?= $row->nama_huk;?></td>
+                                <td><?= $row->Tmt;?></td>  
+                            </tr>
+                            <?php endforeach;?>
                 </tbody>
             </table>
             <br>
@@ -608,7 +624,15 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                <?php $no = 0; foreach($data->rincian_prestasi AS $row) : $no++; ?>
+                            <tr>
+                                <td class="text-right"><?= $no;?></td>
+                                <td><?= $row->tahun;?></td>
+                                <td><?= $row->nilai_skp;?></td>
+                                <td><?= $row->nilai_perilaku;?></td> 
+                                <td><?= $row->nilai_prestasi;?></td>  
+                            </tr>
+                            <?php endforeach;?>
                 </tbody>
             </table>
             <br>
@@ -635,7 +659,14 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                            <?php $no = 0; foreach($data->rincian_keluarga_ibu AS $row) : $no++; ?>
+                            <tr>
+                                <td class="text-right"><?= $no;?></td>
+                                <td><?= $row->nama;?></td>
+                                <td><?= $row->tgl_lahir;?></td>
+                                <td><?= $row->pekerjaan;?></td>  
+                            </tr>
+                            <?php endforeach;?>
                 </tbody>
             </table>
             <br>
@@ -650,7 +681,14 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                <?php $no = 0; foreach($data->rincian_keluarga_ayah AS $row) : $no++; ?>
+                            <tr>
+                                <td class="text-right"><?= $no;?></td>
+                                <td><?= $row->nama;?></td>
+                                <td><?= $row->tgl_lahir;?></td>
+                                <td><?= $row->pekerjaan;?></td>  
+                            </tr>
+                            <?php endforeach;?>
                 </tbody>
             </table>
             <br>
@@ -665,7 +703,15 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                <?php $no = 0; foreach($data->rincian_keluarga_pasutri AS $row) : $no++; ?>
+                            <tr>
+                                <td class="text-right"><?= $no;?></td>
+                                <td><?= $row->nama;?></td>
+                                <td><?= $row->tgl_lahir;?></td>
+                                <td><?= $row->tgl_pernikahan;?></td>
+                                <td><?= $row->pekerjaan;?></td>  
+                            </tr>
+                            <?php endforeach;?>
                 </tbody>
             </table>
             <br>
@@ -680,6 +726,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                <?php $no = 0; foreach($data->rincian_keluarga_anak AS $row) : $no++; ?>
+                            <tr>
+                                <td class="text-right"><?= $no;?></td>
+                                <td><?= $row->nama;?></td>
+                                <td><?= $row->tgl_lahir;?></td>
+                                <td><?= $row->jenis_kelamin;?></td>
+                                <td><?= $row->pekerjaan;?></td>  
+                            </tr>
+                            <?php endforeach;?>
 
                 </tbody>
             </table>

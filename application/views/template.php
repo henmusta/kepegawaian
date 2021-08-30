@@ -376,7 +376,7 @@ $('.select2form').select2({
     $.each(data, function (index, obj) {
 
       new_nodes += '' +
-        '<a  onclick=edit_notif(' + obj.pk + ',' + obj.id_notif + ',"' + obj.nama + '") class="dropdown-item dropdown-item-unread">' +
+        '<a  onclick=edit_notif(' + obj.pk + ',' + obj.id_notif + ') class="dropdown-item dropdown-item-unread">' +
         '<div class="dropdown-item-avatar">' +
         '<img alt="image" width="40" height="50" src="' + url + obj.image + '" class="rounded-circle">' +
         '</div>' +
@@ -422,10 +422,10 @@ $('.select2form').select2({
   });
 
 
-  function edit_notif($pk, $pk_notif, $name) {
+  function edit_notif($pk, $pk_notif) {
     $('#form')[0].reset(); 
     $('#modal_form').modal('show'); 
-    $('.modal-title').text($name); 
+    $('.modal-title').text('Tambah Pangkat Baru'); 
 
     $('[name="pk"]').val($pk);
     $('[name="pk_notif"]').val($pk_notif);

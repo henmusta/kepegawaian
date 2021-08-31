@@ -55,7 +55,7 @@ class Kepegawaian extends MY_Controller {
 			{  
             $row[] = $pegawai->tmt_notif; 
             }else{
-                $row[] =  'Lengkapi Data Kepangkatan';
+                $row[] =  '<a class="btn btn-outline-warning">Lengkapi Data</a>';
             }
             if($tmt = $pegawai->tmt_notif)
 			{
@@ -65,7 +65,7 @@ class Kepegawaian extends MY_Controller {
             $difference = $datetime1->diff($datetime2);
 			$row[] =  $difference->y. ' Tahun ' . $difference->m. ' Bulan ' . $difference->d . ' hari ' ;
 			}else{
-            $row[] =  'Lengkapi Data Kepangkatan';
+            $row[] =  '<a class="btn btn-outline-warning">Lengkapi Data</a>';
             }
             $row[] = $pegawai->pk;
             $data[] = $row;
@@ -92,7 +92,7 @@ class Kepegawaian extends MY_Controller {
         }else{
             $nama = slug($user['nik']);
             $config['upload_path']   = './assets/foto/pegawai/';
-            $config['allowed_types'] = 'gif|jpg|jpeg|png'; //mencegah upload backdor
+            $config['allowed_types'] = 'gif|jpg|jpeg|png'; 
             $config['max_size']      = '1000';
             $config['max_width']     = '2000';
             $config['max_height']    = '1024';
@@ -125,11 +125,18 @@ class Kepegawaian extends MY_Controller {
                     'jenis_kelamin'  => $user['gender'],
                     'status_nikah' => $user['status'],
                     'alamat' =>$user['alamat'],
-                    'no_hp' =>$user['no_hp']
+                    'no_hp' =>$user['no_hp'],
+                    'image' => $gambar['file_name']
             );
             
             }
             $id = $user['id'];
+            //  $g = $this->Mod_aplikasi->getImage($id)->row_array();
+
+            // if ($g != null) {
+            //     //hapus gambar yg ada diserver
+            //     unlink('assets/foto/logo/'.$g['logo']);
+            // }
             $response = $this->Mod_kepegawaian->save($id, $save);
             $response['status'] = isset($response['status']) && is_bool($response['status']) && $response['status'] === TRUE ? 'success' : 'error';
             $this->output

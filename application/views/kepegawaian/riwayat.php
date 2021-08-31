@@ -2499,7 +2499,8 @@
                             }
                         });
                     }
-                }); $('form#form_teknis').validate({
+                }); 
+                $('form#form_teknis').validate({
                     validClass: 'is-valid',
                     errorClass: 'is-invalid',
                     errorElement: 'div',

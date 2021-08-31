@@ -10,8 +10,8 @@ class Mod_dashboard extends CI_Model {
 
     public function cards(){
 
-        $today = '2025-04-30';
-        // $today = date("Y-m-d");
+        // $today = '2025-04-30';
+        $today = date("Y-m-d");
         $tgl_notif =  date('Y-m-d', strtotime('+4 month', strtotime($today)));
 
         $query = "

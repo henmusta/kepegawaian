@@ -16,7 +16,7 @@ class Mod_notif extends CI_Model
 
 	private function _get_datatables_query()
 	{
-        $today = '2025-04-30';
+        $today = '2026-04-30';
         // $today = date("Y-m-d");
         $tgl_notif =  date('Y-m-d', strtotime('+4 month', strtotime($today)));
 		$this->db->select('*, tb_user.id as pk');

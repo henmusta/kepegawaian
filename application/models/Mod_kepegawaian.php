@@ -86,7 +86,13 @@ class Mod_kepegawaian extends CI_Model
         return $this->db->get("tb_user");
     }
 
-
+	function getImage($id)
+    {
+        $this->db->select('image');
+        $this->db->from('tb_user');
+        $this->db->where('id', $id);
+        return $this->db->get();
+    }
 
 	function save($id,$save)
     {

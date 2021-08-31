@@ -14,7 +14,8 @@
               <h4>Total Pegawai</h4>
             </div>
             <div class="card-body">
-              <?php echo $cards->user_all ?>
+          
+              <?php echo isset($cards->user_all) ? $cards->user_all : 0 ?>
             </div>
           </div>
         </div>
@@ -29,7 +30,7 @@
               <h4>Notif Pegawai</h4>
             </div>
             <div class="card-body">
-            <?php echo $cards->user_notif ?>
+            <?php echo isset($cards->user_notif) ? $cards->user_notif : 0 ?>
             </div>
           </div>
         </div>
@@ -41,7 +42,7 @@
       <div class="col-lg-12 col-md-12 col-12 col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h4>Pegawai</h4>
+            <h4>Data Notifikasi</h4>
           </div>
           <div class="card-body">
           <div class="card">
@@ -82,7 +83,7 @@
     table =$("#tabelnotif").DataTable({
     //   "autoWidth": true,
       "language": {
-        "sEmptyTable": "Data Pengguna Belum Ada"
+        "sEmptyTable": "Data Notifikasi Belum Ada"
       },
         "processing": true,
         "serverSide": true,

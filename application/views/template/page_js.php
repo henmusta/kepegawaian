@@ -20,6 +20,7 @@ if ($this->uri->segment(1) == "kepegawaian" ||
     $this->uri->segment(1) == "riwayat" || 
     $this->uri->segment(1) == "aplikasi" || 
     $this->uri->segment(1) == "pegawai" || 
+    $this->uri->segment(1) == "admin" || 
     $this->uri->segment(1) == "dashboard" || 
     $this->uri->segment(1) == "notif_all" || 
     $this->uri->segment(1) == "settings" ) { ?>

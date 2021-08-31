@@ -5,7 +5,7 @@
     <div class="main-wrapper main-wrapper-1">
       <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
-        <form class="form-inline mr-auto">]
+        <form class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
             <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
@@ -14,7 +14,7 @@
         <ul class="navbar-nav navbar-right" id="notif_container">
 
           <li class="dropdown dropdown-list-toggle">
-            <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg">
+            <a href="#" data-toggle="dropdown" id="beep" class="nav-link notification-toggle nav-link-lg btn btn-outline-danger" >
               <span id="notif_count" class="label label-danger">0</span>
               <i class="far fa-bell"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
@@ -32,7 +32,7 @@
 
               </div>
               <div class="dropdown-footer text-center">
-                <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+                <a href="notif_all">Lihat Semua<i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
           </li>

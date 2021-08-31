@@ -13,7 +13,7 @@ class Notification_model extends CI_Model {
 
     public function getByUserID($last_notification_id=0, $limit=true) {
     	$today = date("Y-m-d");
-        $today = '2025-04-30';
+        // $today = '2026-04-30';
         $tgl_notif =  date('Y-m-d', strtotime('+4 month', strtotime($today)));
         $this->db->order_by('tmt_notif', 'DESC');
         if ($limit) {
@@ -87,5 +87,7 @@ class Notification_model extends CI_Model {
 		return $result;
 		unset($result);
     }
+
+
 
 }

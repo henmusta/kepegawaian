@@ -813,14 +813,13 @@
 var is_chrome = function () { return Boolean(window.chrome); }
 if(is_chrome) 
 {
-   window.print();
-   setTimeout(function(){window.close();}, 10000); 
-   //give them 10 seconds to print, then close
+    window.print();
+	setTimeout(window.close, 0);
 }
 else
 {
-   window.print();
-   window.close();
+	window.print();
+	setTimeout(window.close, 0);
 }
     </script>
 

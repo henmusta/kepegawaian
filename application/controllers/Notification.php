@@ -8,6 +8,9 @@ class Notification extends CI_Controller {
         $this->load->model('Notification_model');
     }
     public function index() {
+        $data = array(
+			'title' => "notification"
+		);
         $last_notification_id = $this->User_model->get_last_notif()->last;
         $data = $this->Notification_model->getByUserID(
             $last_notification_id

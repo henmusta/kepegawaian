@@ -79,39 +79,5 @@
 </div>
 
 <script>
- $(document).ready(function() {
-    table =$("#tabelnotif").DataTable({
-    //   "autoWidth": true,
-      "language": {
-        "sEmptyTable": "Data Notifikasi Belum Ada"
-      },
-        "processing": true,
-        "serverSide": true,
-        "order": [],
 
-        "ajax": {
-          "url": "<?php echo site_url('notif_all/ajax_list')?>",
-          "type": "POST"
-        },
-   
-         "columnDefs": [
-            { 
-            "className": "dt-center",
-            "targets": [ 0 ], 
-            "orderable": false
-            },
-            {
-                "targets": [1],
-                "render": function(data , type , row){
-                    if (row[1]!=null) {
-                    return "<img class=\"myImgx\"  src='<?php echo base_url("assets/foto/pegawai/");?>"+row[1]+"' width=\"100px\" height=\"100px\">";
-                    }else{
-                    return "<img class=\"myImgx\"  src='<?php echo base_url("assets/foto/logo/Logo.png");?>' width=\"100px\" height=\"100px\">";
-                    }
-                }
-            },
-
-          ],
-        });
-    });        
 </script>

@@ -4,11 +4,9 @@
             <h1><?php echo $title; ?></h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active">
-                    <a href="#">Dashboard</a>
+                    <a href="dashboard">Dashboard</a>
                 </div>
-                <div class="breadcrumb-item">
-                    <a href="#"><?php echo $title; ?></a>
-                </div>
+             
             </div>
         </div>
 
@@ -224,7 +222,9 @@
 
             <script>
          
-         load();
+        //  load();
+
+         
                $('.datepicker').flatpickr({
                             altInput: true,altFormat: 'd-m-Y'
                         });
@@ -235,16 +235,15 @@
                         .back();
                 }
 
-                function load() {
-                    var image = "<?php echo base_url("assets/foto/pegawai/");?><?php echo $data->image?>";
-                    $("#v_image").attr("src",image);
-                } 
-
+        
 
                 var loadFile = function(event) {
                     var image = document.getElementById('v_image');
                     image.src = URL.createObjectURL(event.target.files[0]);
                  };
+
+
+
 
                 var save_method;
                 $(document).ready(function () {

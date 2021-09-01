@@ -3,11 +3,11 @@
         <div class="section-header">
             <h1><?php echo $title; ?></h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active">
-                    <a href="#">Dashboard</a>
+               <div class="breadcrumb-item active">
+                    <a href="dashboard">Dashboard</a>
                 </div>
                 <div class="breadcrumb-item">
-                    <a href="#"><?php echo $title; ?></a>
+                <a href="notif_all"><?php echo $title; ?></a>
                 </div>
             </div>
         </div>

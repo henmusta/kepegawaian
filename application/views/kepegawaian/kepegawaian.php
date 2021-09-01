@@ -7,7 +7,7 @@
                     <a href="dashboard">Dashboard</a>
                 </div>
                 <div class="breadcrumb-item">
-                    <a href="#"><?php echo $title; ?></a>
+                    <a href="<?php echo $title; ?>"><?php echo $title; ?></a>
                 </div>
             </div>
         </div>

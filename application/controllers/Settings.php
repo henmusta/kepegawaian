@@ -12,7 +12,7 @@ class Settings extends MY_Controller {
     function index()
     {
         $data = array(
-			'title' => "Settings"
+			'title' => "settings"
 		);
         $this->template->load('template','kepegawaian/settings', $data);
     }

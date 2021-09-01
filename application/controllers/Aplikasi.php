@@ -15,7 +15,7 @@ class Aplikasi extends MY_Controller
 	public function index()
 	{
         $data = array(
-			'title' => "Dashboard"
+			'title' => "aplikasi"
 		);
         $this->template->load('template','aplikasi', $data);
 	}

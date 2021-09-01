@@ -10,7 +10,7 @@
   <script src="<?php echo base_url(); ?>assets/js/stisla.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="<?php echo base_url(); ?>assets/modules/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <script src="<?php echo base_url();?>assets/modules/jquery-validation/jquery.validate.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/select2/dist/js/select2.full.min.js"></script>
   
   <!-- JS Libraies -->

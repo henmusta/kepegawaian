@@ -14,7 +14,7 @@ class Kepegawaian extends MY_Controller {
     function index()
     {
         $data = array(
-			'title' => "Pegawai"
+			'title' => "kepegawaian"
 		);
         $this->template->load('template','kepegawaian/kepegawaian', $data);
     }

@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <img class="wave" src="<?= base_url(); ?>assets/login/img/wave.png">
+  <img class="wave" src="<?= base_url(); ?>assets/login/img/side.png">
   <div class="container">
     <div class="img">
       <img src="<?= base_url(); ?>assets/login/img/log.svg">

@@ -30,7 +30,7 @@ $apl = $this->db->get("tb_aplikasi")->row();
             </li>
 
             <li class="<?php echo  $this->uri->segment(1) == 'notifikasi' || $this->uri->segment(1) == 'notifikasi' ? 'active' : '' ; ?>">
-              <a  href="<?php echo base_url(); ?>notifikasi" class="nav-link"><i class="far fa-bell"></i><span>Notifikasi</span></a>
+              <a  href="<?php echo base_url(); ?>notif_all" id="side_not" class="nav-link"><i class="far fa-bell"></i><span>Notifikasi</span></a>
             </li>
         
      
@@ -38,8 +38,8 @@ $apl = $this->db->get("tb_aplikasi")->row();
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Menu Sistem</span></a>
               <ul class="dropdown-menu">
                 <li class="<?php echo $this->uri->segment(1) == 'aplikasi' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>aplikasi"><i class="fab fa-blogger"></i>Aplikasi</a></li>
-                <!-- <li class="<?php echo $this->uri->segment(1) == 'admin' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>menu"><i class="fab fa-blogger"></i>Menu</a></li>
-                <li class="<?php echo $this->uri->segment(1) == 'admin' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>submenu"><i class="fab fa-blogger"></i>Submenu</a></li>
+                <li class="<?php echo $this->uri->segment(1) == 'admin' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin"><i class="fab fa-blogger"></i>Admin</a></li>
+                <!-- <li class="<?php echo $this->uri->segment(1) == 'admin' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>submenu"><i class="fab fa-blogger"></i>Submenu</a></li>
                 <li class="<?php echo $this->uri->segment(1) == 'admin' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin"><i class="fab fa-blogger"></i>Admin</a></li>
                 <li class="<?php echo $this->uri->segment(1) == 'admin' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>adminlevel"><i class="fab fa-blogger"></i>Admin Level</a></li>
                 <li class="<?php echo $this->uri->segment(1) == 'admin' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>login/logout"><i class="fab fa-blogger"></i>Log Out</a></li> -->

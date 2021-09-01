@@ -50,18 +50,22 @@ class Login extends CI_Controller {
 
                 $this->session->set_userdata($userdata);
                 $data['status'] = TRUE;
-                echo json_encode($data);
+                // echo json_encode($data);
             }else{
 
                 $data['pesan'] = "Username atau Password Salah!";
                 $data['error'] = TRUE;
-                echo json_encode($data);
+                // echo json_encode($data);
             }
         }else{
             $data['pesan'] = "Username atau Password belum terdaftar!";
             $data['error'] = TRUE;
-            echo json_encode($data);
+            // echo json_encode($data);
         }
+        $this->output
+        ->set_status_header(200)
+        ->set_content_type('Application/json')
+        ->set_output(json_encode($data));
         
     }
 

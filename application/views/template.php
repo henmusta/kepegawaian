@@ -26,115 +26,7 @@ width:100%!important;
     background-color: #eeeeee;
   }
 
-  .file-upload {
-    background-color: #ffffff;
-    margin: 0 auto;
-    padding: 20px;
-  }
 
-  .file-upload-btn {
-    width: 100%;
-    margin: 0;
-    color: #fff;
-    background: #6777EF;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    border-bottom: 4px solid #15824B;
-    transition: all .2s ease;
-    outline: none;
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-
-  .file-upload-btn:hover {
-    background: #1AA059;
-    color: #ffffff;
-    transition: all .2s ease;
-    cursor: pointer;
-  }
-
-  .file-upload-btn:active {
-    border: 0;
-    transition: all .2s ease;
-  }
-
-  .file-upload-content {
-    display: none;
-    text-align: center;
-  }
-
-  .file-upload-input {
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    outline: none;
-    opacity: 0;
-    cursor: pointer;
-  }
-
-  .image-upload-wrap {
-    margin-top: 20px;
-    border: 4px dashed #6777EF;
-    position: relative;
-  }
-
-  .image-dropping,
-  .image-upload-wrap:hover {
-    background-color: #6777EF;
-    border: 4px dashed #ffffff;
-  }
-
-  .image-title-wrap {
-    padding: 0 15px 15px 15px;
-    color: #222;
-  }
-
-  .drag-text {
-    text-align: center;
-  }
-
-  .drag-text h3 {
-    font-weight: 100;
-    text-transform: uppercase;
-    color: #15824B;
-    padding: 60px 0;
-  }
-
-  .file-upload-image {
-    max-height: 200px;
-    max-width: 200px;
-    margin: auto;
-    padding: 20px;
-  }
-
-  .remove-image {
-    width: 100%;
-    margin: 0;
-    color: #fff;
-    background: #cd4535;
-    border: none;
-    padding: 2px;
-    border-radius: 4px;
-    border-bottom: 4px solid #b02818;
-    transition: all .2s ease;
-    outline: none;
-    font-weight: 700;
-  }
-
-  .remove-image:hover {
-    background: #c13b2a;
-    color: #ffffff;
-    transition: all .2s ease;
-    cursor: pointer;
-  }
-
-  .remove-image:active {
-    border: 0;
-    transition: all .2s ease;
-  }
 </style>
 
 <!-- layout -->
@@ -354,6 +246,8 @@ $('.select2form').select2({
           is_new_notif = true;
           last_notif_id = data[0].id;
           append_li(data);
+          $('#beep').addClass('beep'); 
+          $('#side_not').addClass('beep beep-sidebar');
         }
       } else {
         // ada notifikasi baru
@@ -361,6 +255,8 @@ $('.select2form').select2({
           is_new_notif = true;
           last_notif_id = data[0].id;
           append_li(data);
+          $('#beep').removeClass('beep'); 
+          $('#side_not').removeClass('beep beep-sidebar');
         }
       }
     });
@@ -374,9 +270,10 @@ $('.select2form').select2({
     var new_nodes = '';
     var url = '<?php echo base_url("assets/foto/pegawai/"); ?>';
     $.each(data, function (index, obj) {
+    
 
       new_nodes += '' +
-        '<a  onclick=edit_notif(' + obj.pk + ',' + obj.id_notif + ',"' + obj.nama + '") class="dropdown-item dropdown-item-unread">' +
+        '<a  onclick=edit_notif(' + obj.pk + ',' + obj.id_notif + ') class="dropdown-item dropdown-item-unread">' +
         '<div class="dropdown-item-avatar">' +
         '<img alt="image" width="40" height="50" src="' + url + obj.image + '" class="rounded-circle">' +
         '</div>' +
@@ -415,17 +312,57 @@ $('.select2form').select2({
         data: {
           'notif_id': notif_ul.children()[0].dataset['notifId']
         }
+        // $('#beep').addClass('beep'); 
       });
       is_new_notif = false;
     }
 
   });
 
+function edit_user(id){
+save_method = 'update';
+ $('#form')[0].reset(); // reset form on modals
+ $('.form-group').removeClass('has-error'); // clear error class
+ $('.help-block').empty(); // clear error string
 
-  function edit_notif($pk, $pk_notif, $name) {
+ //Ajax Load data from ajax
+ $.ajax({
+   url : "<?php echo site_url('user/editadmin')?>/" + id,
+   type: "GET",
+   dataType: "JSON",
+   success: function(data)
+   {
+
+     $('[name="id_user"]').val(data.id_user);
+     $('[name="username"]').val(data.username);
+     $('[name="full_name"]').val(data.full_name);
+     $('[name="is_active"]').val(data.is_active);
+     $('[name="level"]').val(data.id_level);
+     
+     if (data.image==null) {
+       var image = "<?php echo base_url('assets/foto/user/default.png')?>";
+       $("#v_image").attr("src",image);
+     }else{
+      var image = "<?php echo base_url('assets/foto/user/')?>";
+      $("#v_image").attr("src",image+data.image);
+    }
+    
+         $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+         $('.modal-title').text('Edit User'); // Set title to Bootstrap modal title
+
+       },
+       error: function (jqXHR, textStatus, errorThrown)
+       {
+         alert('Error get data from ajax');
+       }
+     });
+}
+
+
+  function edit_notif($pk, $pk_notif) {
     $('#form')[0].reset(); 
     $('#modal_form').modal('show'); 
-    $('.modal-title').text($name); 
+    $('.modal-title').text('Tambah Pangkat Baru'); 
 
     $('[name="pk"]').val($pk);
     $('[name="pk_notif"]').val($pk_notif);

@@ -26,7 +26,10 @@ if ($this->uri->segment(2) == "form" ||
     $this->uri->segment(1) == "kepegawaian" || 
     $this->uri->segment(1) == "riwayat" || 
     $this->uri->segment(1) == "aplikasi" || 
-    $this->uri->segment(1) == "pegawai" || 
+    $this->uri->segment(1) == "pegawai" ||
+    $this->uri->segment(1) == "notif_all" || 
+    $this->uri->segment(1) == "admin" || 
+    $this->uri->segment(1) == "dashboard" || 
     $this->uri->segment(1) == "settings"  ) { ?>
 
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/datatables/datatables.min.css">

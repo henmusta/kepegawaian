@@ -23,15 +23,22 @@
                         <div class="card-body">
                             <form id="form_pegawai"   method="POST"
                                             action="<?php echo base_url("kepegawaian/save");?>"
+                                            enctype="multipart/form-data"
                                             autocomplete="off">
                                         <input type="hidden" name="user[id]"  value="<?= isset($data->id) ? $data->id : NULL;?>">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-4">
                                             <div class="card author-box card-primary">
                                                 <div class="card-body">
                                                     <div class="author-box-left">
-                                                        <div class="form-group">
+                                                    <div class="form-group row ">
+                                                        <div class="col-sm-9 kosong">
+                                                            <img  id="v_image" width="150px" height="220px">
+                                                        </div>
+                                                        <input type="file"  class="form-control btn-file" onchange="loadFile(event)" name="imagefile" id="imagefile" placeholder="Image" value="UPLOAD">
+                                                    </div>
+                                                        <!-- <div class="form-group">
                                                             <button
                                                                 class="file-upload-btn"
                                                                 type="button"
@@ -50,6 +57,21 @@
                                                             </div>
                                                             <p class="help-block text-center">Recomended dimention 300x300 pixel and max filesize 2.0MB</p>
                                                             <div class="file-upload-content">
+                                                            <?php if(isset($data->image)) : ?>
+                                                                <img
+                                                                    alt="image"
+                                                                    src="<?php echo base_url("assets/foto/pegawai/");?><?php echo $data->image?>"
+                                                                    width="150"
+                                                                    height="200">
+                                                            <?php else : ?>
+                                                                <img
+                                                                    alt="image"
+                                                                    src="<?php echo base_url();?>assets/img/avatar/avatar-1.png"
+                                                                    class="rounded-circle author-box-picture"
+                                                                    width="200"
+                                                                    height="150">
+
+                                                                <?php endif; ?>
                                                                 <img class="file-upload-image" src="#" alt="your image"/>
                                                                 <div class="image-title-wrap">
                                                                     <button type="button" onclick="removeUpload()" class="remove-image">Hapus
@@ -57,7 +79,7 @@
                                                                     </button>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="clearfix"></div><br>
                                                     </div>
                                                     <div class="author-box-details">
@@ -201,13 +223,11 @@
             </div>
 
             <script>
-                $('.datepicker').daterangepicker({
-                    locale: {
-                        format: 'YYYY-MM-DD'
-                    },
-                    drops: 'down',
-                    opens: 'right'
-                });
+         
+         load();
+               $('.datepicker').flatpickr({
+                            altInput: true,altFormat: 'd-m-Y'
+                        });
 
                 function goBack() {
                     window
@@ -215,41 +235,19 @@
                         .back();
                 }
 
-                function readURL(input) {
-                    if (input.files && input.files[0]) {
+                function load() {
+                    var image = "<?php echo base_url("assets/foto/pegawai/");?><?php echo $data->image?>";
+                    $("#v_image").attr("src",image);
+                } 
 
-                        var reader = new FileReader();
 
-                        reader.onload = function (e) {
-                            $('.image-upload-wrap').hide();
-
-                            $('.file-upload-image').attr('src', e.target.result);
-                            $('.file-upload-content').show();
-
-                            $('.image-title').html(input.files[0].name);
-                        };
-                        reader.readAsDataURL(input.files[0]);
-                    } else {
-                        removeUpload();
-                    }
-                }
-
-                function removeUpload() {
-                    $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-                    $('.file-upload-content').hide();
-                    $('.image-upload-wrap').show();
-                }
-                $('.image-upload-wrap').bind('dragover', function () {
-                    $('.image-upload-wrap').addClass('image-dropping');
-                });
-                $('.image-upload-wrap').bind('dragleave', function () {
-                    $('.image-upload-wrap').removeClass('image-dropping');
-                });
-
+                var loadFile = function(event) {
+                    var image = document.getElementById('v_image');
+                    image.src = URL.createObjectURL(event.target.files[0]);
+                 };
 
                 var save_method;
                 $(document).ready(function () {
-                   
                     $('form#form_pegawai').validate({
                     validClass: 'is-valid',
                     errorClass: 'is-invalid',

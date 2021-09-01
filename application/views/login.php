@@ -2,6 +2,7 @@
 <html>
 
 <head>
+<link rel="icon" href="<?php echo base_url();?>assets/foto/logo/<?php echo $aplikasi->logo; ?>">
   <title><?php echo $aplikasi->title; ?> | Login</title>
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/login/css/style.css">
@@ -17,7 +18,7 @@
       <img src="<?= base_url(); ?>assets/login/img/log.svg">
     </div>
     <div class="login-content">
-      <form id="loginForm" action="">
+      <form id="logForm" class="FormLog">
         <img style="text-align:center;"src="<?php echo base_url();?>assets/foto/logo/<?php echo $aplikasi->logo; ?>">
         <h2 class="title"><?php echo $aplikasi->nama_aplikasi; ?></h2>
         <div class="form-group">
@@ -48,7 +49,7 @@
         </div>
 
 
-        <button type="button" id="login" class="btn btn-primary float-right btn-inline mb-2">Login</button>
+        <button type="submit" id="login" class="btn btn-primary float-right btn-inline mb-2"><span id="logText"></button>
       </form>
     </div>
   </div>
@@ -59,51 +60,64 @@
   <script src="<?php echo base_url(); ?>assets/modules/izitoast/js/iziToast.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/bootstrap/js/bootstrap.min.js"></script>
   <script>
-    $(document).ready(function () {
-      $("#login").click(function (e) {
-        e.preventDefault();
-        $.ajax({
-          url: '<?php echo base_url('Login/login') ?>',
-          type: 'POST',
-          data: $('#loginForm').serialize(),
-          dataType: 'JSON',
-          success: function (data) {
-            if (data.status) {
-              iziToast.success({
+
+$(document).ready(function(){
+		$('[name=Email]').focus();
+		$('#logText').html('Login');
+		$('#logForm').submit(function(e){
+      $('.form-control').attr('readOnly',true);
+			$('.btn').attr('disabled',true);
+			e.preventDefault();
+			$('#logText').html('Checking...');
+
+      var login = function(){
+				$.ajax({
+					url: "login/login",
+					type: "POST",
+					data: $('#logForm').serialize(),
+					dataType: "JSON",
+					success:function(response)
+					{
+					
+						$('#logText').html('Login');
+						if(response.error)
+						{
+						  iziToast.error({
+                title: 'Gagal!',
+                message: response.pesan,
+                position: 'topRight'
+              });
+					
+							$('.form-control').attr('readOnly',false);
+							$('.btn').attr('disabled',false);
+						}
+						else
+						{
+						  iziToast.success({
                 title: 'Sukses!',
                 message: 'Berhasil Login',
                 position: 'topRight'
               });
-              setTimeout(function () {
-                var url = '<?php echo base_url('dashboard') ?>';
-                window.location = url;
-              }, 1500);
+				
+							$('#logForm')[0].reset();
+							setTimeout(function(){
+								location.reload();
+							}, 3000);
+						}
+					},
+					error: function (jqXHR, textStatus, errorThrown)
+            		{
+            			alert('Error Connection..');
+            		}
+				});
+			};
+			setTimeout(login, 1000);
+  	});
+  });
 
-            } else if (data.error) {
-              iziToast.error({
-                title: 'Gagal!',
-                message: data.pesan,
-                position: 'topRight'
-              });
-            } else {
-              for (var i = 0; i < data.inputerror.length; i++) {
-                $('[name="' + data.inputerror[i] + '"]').addClass('is-invalid');
-                $('[name="' + data.inputerror[i] + '"]').closest('.kosong').append('<span></span>');
-                $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[i]).addClass(
-                  'invalid-feedback');
-              }
-            }
-          }
-        });
 
-      });
 
-      $("input").change(function () {
-        $(this).parent().parent().removeClass('has-error');
-        $(this).next().empty();
-        $(this).removeClass('is-invalid');
-      });
-    });
+   
   </script>
 
 </body>

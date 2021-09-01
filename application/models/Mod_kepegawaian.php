@@ -20,9 +20,21 @@ class Mod_kepegawaian extends CI_Model
 		$this->db->select('*, tb_user.id as pk')
 		->from('tb_user')
 		->join('tb_log_notif','tb_user.id = tb_log_notif.id_user','left')
-		->where('tb_log_notif.status !=','1')
-		->or_where('tb_log_notif.status', NULL)->group_by('tb_user.id');
+		->where('tb_log_notif.status !=','1')->group_by('tb_user.id');
+	
 		$i = 0;
+
+		$start = date('Y-m-d', strtotime($_POST["start_date"]));
+		$end = date('Y-m-d', strtotime($_POST["end_date"]));
+
+		if($_POST["is_date_search"] == "yes")
+		{
+			$this->db->where('tb_log_notif.tmt_notif BETWEEN "'.$start.'" AND "'.$end.'"');
+		}else{
+			$this->db->or_where('tb_log_notif.status', NULL);
+		}
+		
+	
 
 	foreach ($this->column_search as $item)
 	{
@@ -86,7 +98,13 @@ class Mod_kepegawaian extends CI_Model
         return $this->db->get("tb_user");
     }
 
-
+	function getImage($id)
+    {
+        $this->db->select('image');
+        $this->db->from('tb_user');
+        $this->db->where('id', $id);
+        return $this->db->get();
+    }
 
 	function save($id,$save)
     {
